@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beautiful Bond Timeline</title>
+  
+
+  <!-- Internal layout CSS -->
+ <style>
+   
+
+  body {
+    margin: 0;
+    padding: 2rem;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0a0a0a;
+    color: #fff;
+    box-sizing: border-box;
+    perspective: 1000px;
+  }
+
+  .timeline {
+    position: relative;
+    width: 90%;
+    margin: auto;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  /* Center vertical line */
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: #ffffff40;
+    transform: translateX(-50%);
+  }
+
+  .entry {
+    width: 45%;
+    position: relative;
+    margin: 2rem 0;
+    transform-style: preserve-3d;
+  }
+
+  .entry.left {
+    float: left;
+    clear: both;
+    transform: rotateY(1deg);
+  }
+
+  .entry.right {
+    float: right;
+    clear: both;
+    transform: rotateY(-1deg);
+  }
+
+  .entry .content {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 1rem;
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+
+  .entry.left .content::after,
+  .entry.right .content::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 12px;
+    height: 12px;
+    background: #ffffff;
+    border-radius: 50%;
+    border: 2px solid #fff;
+  }
+
+  .entry.left .content::after {
+    right: -26px;
+  }
+
+  .entry.right .content::after {
+    left: -26px;
+  }
+
+  .entry img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
+
+  .entry p {
+    margin: 0;
+    font-size: 1rem;
+    color: #eaeaea;
+    text-align: justify;
+  }
+
+  .submit-button-container {
+    clear: both;
+    text-align: center;
+    margin-top: 4rem;
+  }
+
+  .submit-button {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 25px;
+    border: none;
+    background: #444;
+    color: white;
+    cursor: pointer;
+    transform: rotateX(1deg);
+    transition: background 0.3s ease;
+  }
+
+  .submit-button:hover {
+    background: #666;
+  }
+
+  @media screen and (max-width: 768px) {
+    .timeline::before {
+      left: 8px;
+    }
+
+    .entry,
+    .entry.left,
+    .entry.right {
+      width: 100%;
+      float: none;
+      text-align: left;
+    }
+
+    .entry.left .content::after,
+    .entry.right .content::after {
+      left: -20px;
+      right: auto;
+    }
+  }
+   .timeline::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+</style>
+
+</head>
+<body>
+
+  <h2 style="text-align:center; margin: 40px 0; font-size: 2.5rem; font-weight: 700; color: #fff; letter-spacing: 1px;">
+  A Timeline of Beautiful Bonds
+</h2>
+
+  <div class="timeline" id="timeline">
+    <!-- Timeline entries will be appended here by JS -->
+  </div>
+
+  <div class="submit-button-container">
+    <button class="submit-button" id="openDescriptionPage">
+      Share Your Personal Story
+    </button>
+  </div>
+
+  <script>
+    const descriptions = [
+      "A tender moment of shared joy captures the unspoken warmth between close companions.",
+      "Laughter lights up their faces, echoing the pure bond of lifelong friendship.",
+      "A heartfelt connection radiates through their togetherness, rooted in trust and time.",
+      "The quiet comfort in their presence speaks volumes of a deeply cherished bond.",
+      "Eyes filled with mischief and care, they embody the spirit of sibling-like camaraderie.",
+      "An embrace of pure emotion, capturing the soul of a bond beyond words.",
+      "A playful glance reveals a friendship woven with light-hearted love and care.",
+      "Side by side, their smiles speak of a thousand memories shared in silence.",
+      "The simple touch of hands reflects a deep sense of trust and shared journey.",
+      "Their laughter dances in the air, a beautiful ode to the bond they nurture.",
+      "A moment of stillness, yet their bond pulses with vibrant energy and affection.",
+      "In their eyes, the world fades—leaving only the essence of genuine connection.",
+      "Captured in calm, they radiate a peace only found in unconditional friendship.",
+      "Their shared gaze speaks volumes of silent support and mutual understanding.",
+      "Through every high and low, their bond remains a constant flame of loyalty.",
+      "Side-hugged and glowing, they radiate a love that needs no labels.",
+      "Hand in hand through time, their unity paints a picture of enduring care.",
+      "A single look between them tells the story of countless cherished moments.",
+      "With every glance and giggle, they echo the rhythm of a bond unbroken.",
+      "They stand not as individuals, but as one heart split into two souls.",
+      "Their joy is a shared melody that fills the air with unspoken love.",
+      "A candid glance captures their soulful connection in its purest form.",
+      "Together in frame, yet it's their hearts that remain forever entwined.",
+      "No need for words—their bond sings a silent song of closeness and care."
+    ];
+
+    const timeline = document.getElementById('timeline');
+
+    descriptions.forEach((desc, i) => {
+      const side = i % 2 === 0 ? 'left' : 'right';
+      const entry = document.createElement('div');
+      entry.className = `entry ${side}`;
+      entry.innerHTML = `
+        <div class="content">
+          <img src="images/i${i + 1}.jpg" alt="Bond Image ${i + 1}">
+          <p>${desc}</p>
+        </div>
+      `;
+      timeline.appendChild(entry);
+    });
+
+    document.getElementById('openDescriptionPage').addEventListener('click', () => {
+      window.location.href = 'personal_descriptions.html';
+    });
+  </script>
+</body>
+</html>

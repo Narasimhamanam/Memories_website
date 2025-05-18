@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Share Your Story - May 11th, 2025 Meet</title>
+
+   <style>
+    /* Classic Black & White Theme */
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000; /* pure black background */
+      color: #fff; /* white text */
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+    }
+
+    form {
+      background: rgba(255, 255, 255, 0.05); /* translucent white */
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      margin-bottom: 2rem;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+      color: #eee;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      resize: vertical;
+      font-family: inherit;
+      box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.1);
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #fff;
+      background-color: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.4);
+    }
+
+    textarea {
+      min-height: 120px;
+      max-height: 200px;
+    }
+
+    .external-submit-btn {
+      display: block;
+      width: 100%;
+      background-color: #fff;
+      color: #000;
+      border: none;
+      padding: 1rem 0;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      margin: 2rem 0 1rem 0;
+      cursor: pointer;
+      font-weight: 700;
+      transition: background-color 0.3s ease, color 0.3s ease;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.5);
+    }
+
+    .external-submit-btn:hover {
+      background-color: #eee;
+      color: #000;
+      box-shadow: 0 0 16px rgba(255, 255, 255, 0.8);
+    }
+
+    h3 {
+      color: #fff;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+
+    .descriptions-list {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+      padding: 1rem 1.5rem;
+      max-height: 400px;
+      overflow-y: auto;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .desc-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 0.75rem 0;
+      font-size: 1rem;
+    }
+
+    .desc-item:last-child {
+      border-bottom: none;
+    }
+
+    .desc-item strong {
+      display: block;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fff;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
+    }
+
+    .desc-text {
+      white-space: pre-wrap;
+      margin: 0.3rem 0 0.7rem 0;
+      color: #ddd;
+    }
+
+    .timestamp {
+      font-size: 0.75rem;
+      color: #bbb;
+      font-style: italic;
+    }
+
+    .actions button {
+      background: none;
+      color: #fff;
+      border: 1px solid #fff;
+      border-radius: 20px;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.9rem;
+      margin-right: 0.75rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    .actions button:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .export-btn {
+      display: block;
+      margin: 2rem auto 4rem auto;
+      text-align: center;
+      background-color: #fff;
+      color: #000;
+      border: none;
+      padding: 1rem 2.5rem;
+      font-size: 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 0 14px rgba(255, 255, 255, 0.7);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      max-width: 300px;
+    }
+
+    .export-btn:hover {
+      background-color: #eee;
+      color: #000;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+    }
+
+    /* Scrollbar styling for descriptions list */
+    .descriptions-list::-webkit-scrollbar {
+      width: 8px;
+    }
+    .descriptions-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .descriptions-list::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 20px;
+    }
+  </style>  
+  
+</head>
+<body>
+
+<h2>Share Your Story<br>May 11th, 2025 Meet</h2>
+
+<form id="descriptionForm" novalidate>
+  <label for="nameInput">Your Name or Initials</label>
+  <input type="text" id="nameInput" required maxlength="20" placeholder="e.g., Narasimha" />
+
+  <label for="descriptionInput">Your Story (max 500 characters)</label>
+  <textarea id="descriptionInput" maxlength="500" required placeholder="Write something meaningful..."></textarea>
+
+  <label for="passcodeInput">Set a Passcode (to edit/delete)</label>
+  <input type="password" id="passcodeInput" required maxlength="3" />
+</form>
+
+<button id="externalSubmitBtn" class="external-submit-btn" type="button">
+  Submit Story
+</button>
+
+<h3>Stories from Others</h3>
+<div class="descriptions-list" id="descriptionsList">
+  <!-- Stories will appear here -->
+</div>
+
+<button class="export-btn" onclick="exportStories()">📤 Export Stories</button>
+
+<!-- Firebase SDKs (compat) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+  // Your Firebase config
+  const firebaseConfig = {
+    apiKey: "AIzaSyBW4TFS4A7UAkvN3ZaKAjhRxlLtIlbtPxk",
+    authDomain: "may11meetstories-183f8.firebaseapp.com",
+    projectId: "may11meetstories-183f8",
+    storageBucket: "may11meetstories-183f8.firebasestorage.app",
+    messagingSenderId: "782709335075",
+    appId: "1:782709335075:web:34cc0a9d7f2384284f7d96",
+    databaseURL: "https://may11meetstories-183f8-default-rtdb.asia-southeast1.firebasedatabase.app"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+
+  // Initialize Realtime Database with your URL explicitly
+  const db = firebase.database(firebase.app(), firebaseConfig.databaseURL);
+
+  // Form & UI references
+  const form = document.getElementById('descriptionForm');
+  const nameInput = document.getElementById('nameInput');
+  const storyInput = document.getElementById('descriptionInput');
+  const passcodeInput = document.getElementById('passcodeInput');
+  const list = document.getElementById('descriptionsList');
+  const externalSubmitBtn = document.getElementById('externalSubmitBtn');
+
+  // Submit button triggers form submit
+  externalSubmitBtn.addEventListener('click', () => {
+    form.requestSubmit();
+  });
+
+  // Form submit handler
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+
+    const name = nameInput.value.trim();
+    const text = storyInput.value.trim();
+    const passcode = passcodeInput.value.trim();
+
+    if (!name || !text || !passcode) {
+      alert("Please fill all fields.");
+      return;
+    }
+
+    const newEntry = { name, text, passcode, timestamp: Date.now() };
+
+    db.ref('descriptions').push(newEntry)
+      .then(() => {
+        alert('Story submitted successfully!');
+        form.reset();
+      })
+      .catch(error => {
+        alert('Error submitting story: ' + error.message);
+        console.error(error);
+      });
+  });
+
+  // Load and display stories on any change
+  db.ref('descriptions').on('value', snapshot => {
+    const data = snapshot.val();
+    list.innerHTML = '';
+    if (data) {
+      // Sort by timestamp ascending
+      const entries = Object.entries(data).sort((a, b) => a[1].timestamp - b[1].timestamp);
+      entries.forEach(([id, entry]) => {
+        const div = document.createElement('div');
+        div.className = 'desc-item';
+        div.innerHTML = `
+          <strong>${escapeHtml(entry.name)}</strong>
+          <p class="desc-text">${escapeHtml(entry.text)}</p>
+          <div class="timestamp">${new Date(entry.timestamp).toLocaleString()}</div>
+          <div class="actions">
+            <button onclick="editEntry('${id}')">✏️ Edit</button>
+            <button onclick="deleteEntry('${id}')">🗑️ Delete</button>
+          </div>
+        `;
+        list.appendChild(div);
+      });
+    }
+  });
+
+  // Escape HTML to prevent XSS
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Edit entry function with passcode check
+  function editEntry(id) {
+    const pass = prompt('Enter your passcode to edit:');
+    if (!pass) return;
+    db.ref(`descriptions/${id}`).once('value').then(snapshot => {
+      const entry = snapshot.val();
+      if (entry && entry.passcode === pass) {
+        const newText = prompt('Edit your story:', entry.text);
+        if (newText && newText.trim() !== '') {
+          db.ref(`descriptions/${id}`).update({ text: newText.trim(), timestamp: Date.now() });
+        }
+      } else {
+        alert('Incorrect passcode.');
+      }
+    });
+  }
+
+  // Delete entry function with passcode check
+  function deleteEntry(id) {
+    const pass = prompt('Enter your passcode to delete:');
+    if (!pass) return;
+    db.ref(`descriptions/${id}`).once('value').then(snapshot => {
+      const entry = snapshot.val();
+      if (entry && entry.passcode === pass) {
+        if (confirm('Are you sure you want to delete this story?')) {
+          db.ref(`descriptions/${id}`).remove();
+        }
+      } else {
+        alert('Incorrect passcode.');
+      }
+    });
+  }
+
+  // Export all stories as text file
+  function exportStories() {
+    db.ref('descriptions').once('value').then(snapshot => {
+      const data = snapshot.val();
+      let content = '';
+      if (data) {
+        Object.values(data).forEach(entry => {
+          content += `Name: ${entry.name}\nStory: ${entry.text}\nTime: ${new Date(entry.timestamp).toLocaleString()}\n\n`;
+        });
+      } else {
+        content = 'No stories yet.';
+      }
+      const blob = new Blob([content], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'May11_Stories.txt';
+      link.click();
+    });
+  }
+</script>
+
+</body>
+</html>
